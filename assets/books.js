@@ -16,16 +16,15 @@ window.BOOKS = [
     art: "moon"
   },
   {
-    slug: "neues-buch",
-    title: "Neues Buch",
-    subtitle: "In Arbeit …",
-    emoji: "📚",
+    slug: "umka-abenteuer",
+    title: "Umka und das große Abenteuer",
+    subtitle: "Ein spannender Waldspaziergang zum Lesenüben",
+    emoji: "🐶",
     author: "von Papa",
-    chapters: 0,
-    pages: 0,
-    palette: ["#2a3c6c", "#16213f"],
+    chapters: 5,
+    pages: 25,
+    palette: ["#2f6b45", "#1e4531"],
     accent: "#e8735c",
-    art: "book",
-    isNew: true
+    art: "dog"
   }
 ];

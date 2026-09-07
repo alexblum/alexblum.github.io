@@ -18,7 +18,7 @@ body{
   background:
     radial-gradient(ellipse 900px 500px at 50% -10%, #2a3c6c 0%, transparent 60%),
     linear-gradient(180deg, var(--night-top), var(--night-bot));
-  font-family:'Nunito', sans-serif;
+  font-family:'Nunito','Noto Color Emoji', sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -56,7 +56,7 @@ body{
 .home-link:hover{background:rgba(255,255,255,.18);}
 .home-link:active{transform:scale(.95);}
 .topbar h1{
-  font-family:'Baloo 2', sans-serif;
+  font-family:'Baloo 2','Noto Color Emoji', sans-serif;
   font-size:16px;
   font-weight:700;
   margin:0;
@@ -64,7 +64,7 @@ body{
   letter-spacing:.2px;
 }
 .toolbtn{
-  font-family:'Nunito',sans-serif;
+  font-family:'Nunito','Noto Color Emoji',sans-serif;
   font-weight:800;
   font-size:12.5px;
   border:1.5px solid rgba(255,255,255,.35);
@@ -110,7 +110,7 @@ body{
   background:var(--cream-dark);
 }
 .story-text{
-  font-family:'Baloo 2', sans-serif;
+  font-family:'Baloo 2','Noto Color Emoji', sans-serif;
   font-weight:600;
   font-size:clamp(19px, 4.6vw, 26px);
   line-height:1.55;
@@ -121,7 +121,7 @@ body{
   letter-spacing:.1px;
 }
 .chapter-title{
-  font-family:'Baloo 2', sans-serif;
+  font-family:'Baloo 2','Noto Color Emoji', sans-serif;
   font-weight:700;
   font-size:clamp(24px, 6vw, 34px);
   color:var(--ink);
@@ -131,7 +131,7 @@ body{
   line-height:1.25;
 }
 .chapter-title .chlabel{
-  font-family:'Nunito',sans-serif;
+  font-family:'Nunito','Noto Color Emoji',sans-serif;
   font-weight:800;
   font-size:13px;
   letter-spacing:.12em;
@@ -141,7 +141,7 @@ body{
 }
 .pagenum{
   text-align:center;
-  font-family:'Nunito',sans-serif;
+  font-family:'Nunito','Noto Color Emoji',sans-serif;
   font-weight:700;
   font-size:12px;
   color:#a89a78;
@@ -180,7 +180,7 @@ body{
 .dot.active{background:var(--coral);width:22px;border-radius:6px;}
 
 .cover-title{
-  font-family:'Baloo 2', sans-serif;
+  font-family:'Baloo 2','Noto Color Emoji', sans-serif;
   font-weight:800;
   font-size:clamp(28px,7vw,40px);
   color:var(--ink);
@@ -189,7 +189,7 @@ body{
   line-height:1.2;
 }
 .cover-sub{
-  font-family:'Nunito', sans-serif;
+  font-family:'Nunito','Noto Color Emoji', sans-serif;
   font-weight:700;
   font-size:14px;
   color:#8a7a55;
@@ -204,7 +204,7 @@ body{
   gap:5px;
 }
 .chrow{
-  font-family:'Nunito',sans-serif;
+  font-family:'Nunito','Noto Color Emoji',sans-serif;
   font-weight:700;
   font-size:13.5px;
   color:#6f6142;
@@ -217,7 +217,7 @@ body{
 .startbtn{
   display:block;
   margin:6px auto 22px;
-  font-family:'Baloo 2', sans-serif;
+  font-family:'Baloo 2','Noto Color Emoji', sans-serif;
   font-weight:700;
   font-size:19px;
   color:#fff8ee;

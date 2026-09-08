@@ -189,46 +189,94 @@ function catOnBack(x,y){
   </g>`;
 }
 
-/* --- Umka (schwarzer Cocker Spaniel) --- */
-function dog(x=170,y=162,pose='stand',mood='smile',lookUp=false){
-  let body='';
-  let hx,hy;
+function leg(cx, pawY, w, color){
+  return `<rect x="${(cx-w/2).toFixed(1)}" y="${(pawY-42).toFixed(1)}" width="${w}" height="${42}" rx="${(w/2).toFixed(1)}" fill="${color}"/>
+    <ellipse cx="${cx}" cy="${pawY}" rx="${(w/2+2.4).toFixed(1)}" ry="4" fill="#f3e2c0"/>`;
+}
+
+/* --- Umka (schwarzer Cocker Spaniel, v3) --- */
+function dog(x=170,y=168,pose='stand',mood='smile',lookUp=false){
+  const B='#1a1512', D='#14100d', T='#f3e2c0', E='#2b2018', BE='#2e241d';
+  let s = '';
+  s += `<ellipse cx="${x+2}" cy="${y+56}" rx="52" ry="7" fill="#173325" opacity=".4"/>`;
+
+  /* Wuschel-Schwanz (leicht buschig) */
+  s += `<path d="M${x-40},${y+4} q-15,-6 -19,-20" stroke="${B}" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M${x-42},${y+2} q-12,-4 -14,-13" stroke="${D}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".5"/>
+        <circle cx="${x-61}" cy="${y-16}" r="6.5" fill="${T}"/>`;
+
   if(pose==='stand'){
-    body=`<path d="M${x-30},${y-28} q-14,-4 -12,-22" stroke="#1a1512" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="${x-41}" cy="${y-49}" r="4.5" fill="#f3e2c0"/>
-      <ellipse cx="${x}" cy="${y-24}" rx="34" ry="18" fill="#1a1512"/>
-      <rect x="${x-24}" y="${y-17}" width="7" height="18" rx="3" fill="#14100d"/>
-      <rect x="${x-12}" y="${y-16}" width="7" height="17" rx="3" fill="#14100d"/>
-      <rect x="${x+7}" y="${y-16}" width="7" height="17" rx="3" fill="#14100d"/>
-      <rect x="${x+17}" y="${y-17}" width="7" height="18" rx="3" fill="#14100d"/>
-      <ellipse cx="${x+20}" cy="${y-19}" rx="11" ry="9" fill="#f3e2c0" opacity=".85"/>`;
-    hx=x+26; hy=y-46;
-  } else { // sit
-    body=`<path d="M${x-20},${y-32} q-12,-6 -10,-24" stroke="#1a1512" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <ellipse cx="${x}" cy="${y-21}" rx="23" ry="22" fill="#1a1512"/>
-      <rect x="${x+10}" y="${y-15}" width="7" height="16" rx="3" fill="#14100d"/>
-      <ellipse cx="${x+16}" cy="${y-18}" rx="9" ry="11" fill="#f3e2c0" opacity=".85"/>`;
-    hx=x+22; hy=y-48;
+    /* hintere + vordere Beine (ferne zuerst, dann nahe) */
+    s += leg(x-22, y+52, 10, D) + leg(x+36, y+50, 10, D);
+    /* Körper */
+    s += `<path d="M${x-46},${y+6}
+      C${x-46},${y-14} ${x-34},${y-27} ${x-16},${y-31}
+      C${x+2},${y-34} ${x+22},${y-34} ${x+34},${y-29}
+      C${x+42},${y-25} ${x+45},${y-15} ${x+44},${y-5}
+      C${x+43},${y+6} ${x+37},${y+14} ${x+27},${y+17}
+      L${x+16},${y+20}
+      C${x+4},${y+23} ${x-10},${y+23} ${x-20},${y+21}
+      C${x-38},${y+19} ${x-46},${y+14} ${x-46},${y+6} Z" fill="${B}"/>`;
+    /* Brustbehaarung */
+    s += `<ellipse cx="${x+37}" cy="${y+0}" rx="8" ry="13" fill="${T}" opacity=".9"/>`;
+    /* nahe Beine */
+    s += leg(x-32, y+54, 11, B) + leg(x+26, y+52, 11, B);
+  } else {
+    /* SITZEN: einteilige Silhouette inkl. in den Körper integrierter Vorderbeine + Gesäß am Boden */
+    s += `<path d="M${x+40},${y-26}
+      C${x+47},${y-21} ${x+49},${y-10} ${x+49},${y}
+      L${x+49},${y+52}
+      L${x+34},${y+52}
+      L${x+34},${y+18}
+      C${x+20},${y+22} ${x+2},${y+24} ${x-10},${y+28}
+      C${x-18},${y+32} ${x-22},${y+44} ${x-30},${y+48}
+      L${x-48},${y+48}
+      C${x-54},${y+40} ${x-53},${y+16} ${x-48},${y+2}
+      C${x-42},${y-16} ${x-28},${y-28} ${x-8},${y-31}
+      C${x+10},${y-34} ${x+30},${y-32} ${x+40},${y-26} Z" fill="${B}"/>`;
+    /* fernes vorderes Bein (dezent) */
+    s += leg(x+44, y+50, 9, D);
+    /* Brustbehaarung (auf der Brust, nicht schwebend) */
+    s += `<ellipse cx="${x+43}" cy="${y+30}" rx="6" ry="11" fill="${T}" opacity=".9"/>`;
+    /* Pfote */
+    s += `<ellipse cx="${x+42}" cy="${y+54}" rx="11" ry="4.4" fill="${T}"/>`;
   }
-  const eyeR = mood==='surprise' ? 3.4 : 2.6;
-  const eyes = `<circle cx="${hx-3}" cy="${hy-2}" r="${eyeR}" fill="#fff6e6"/>
-    <circle cx="${hx-3}" cy="${hy-2}" r="${(eyeR*0.55).toFixed(1)}" fill="#2b2018"/>`;
+
+  const hx=x+34, hy=y-48;
+  const head = `
+    <circle cx="${hx}" cy="${hy}" r="24" fill="${B}"/>
+    <path d="M${hx-4},${hy-19} q9,-7 18,-3 l12,5 q5,2 4,7 l-2,8 q-3,5 -10,4 l-17,-4 Z" fill="${B}"/>
+    <path d="M${hx+12},${hy-2} q13,-2 18,7 q2,7 -5,10 q-9,4 -18,-2 Z" fill="${T}"/>
+    <path d="M${hx+8},${hy+10} q6,8 13,5 q-3,6 -10,5 q-5,-1 -7,-6 Z" fill="${T}" opacity=".95"/>
+    <ellipse cx="${hx+28}" cy="${hy+3}" rx="4.6" ry="3.8" fill="${E}"/>
+    <circle cx="${hx+29.4}" cy="${hy+1.4}" r="1.1" fill="#fff" opacity=".7"/>
+    <ellipse cx="${hx+1}" cy="${hy-4}" rx="7.5" ry="8" fill="#fff6e6"/>
+    <circle cx="${hx+1.5}" cy="${hy-3.5}" r="4.6" fill="#241c14"/>
+    <circle cx="${hx+3.4}" cy="${hy-5.8}" r="1.9" fill="#fff"/>
+    <circle cx="${hx-0.4}" cy="${hy-1.6}" r=".9" fill="#fff" opacity=".8"/>`;
   let mouth='';
-  if(mood==='smile') mouth=`<path d="M${hx+4},${hy+7} q-4,3 -9,1" stroke="#f0c99b" stroke-width="1.6" fill="none" stroke-linecap="round"/>`;
-  if(mood==='joy') mouth=`<path d="M${hx+3},${hy+6} q4,6 10,2" stroke="#f0c99b" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-    <path d="M${hx+7},${hy+9} q3,4 6,1 q-3,2 -6,-1 Z" fill="#e88ba0"/>`;
-  if(mood==='think') mouth=`<path d="M${hx+4},${hy+7} q-4,2 -8,0" stroke="#f0c99b" stroke-width="1.6" fill="none" stroke-linecap="round"/>`;
-  if(mood==='surprise') mouth=`<ellipse cx="${hx+5}" cy="${hy+8}" rx="2.5" ry="3" fill="#f0c99b" opacity=".9"/>`;
-  const head=`
-    <circle cx="${hx}" cy="${hy}" r="16" fill="#1a1512"/>
-    <ellipse cx="${hx+7}" cy="${hy+4}" rx="8.5" ry="6.5" fill="#f3e2c0"/>
-    <circle cx="${hx+13}" cy="${hy+1.5}" r="2.4" fill="#100c0a"/>
-    ${eyes}${mouth}`;
-  const headG = lookUp ? `<g transform="rotate(-16 ${hx} ${hy})">${head}</g>` : head;
-  const ears=`
-    <ellipse cx="${hx-11}" cy="${hy+7}" rx="6" ry="15" fill="#100c0a" transform="rotate(16 ${hx-11} ${hy+7})"/>
-    <ellipse cx="${hx+11}" cy="${hy+8}" rx="6" ry="15" fill="#100c0a" transform="rotate(-8 ${hx+11} ${hy+8})"/>`;
-  return body + headG + ears;
+  if(mood==='smile') mouth = `<path d="M${hx+22},${hy+12} q-6,4 -13,1" stroke="#7a5a3a" stroke-width="1.7" fill="none" stroke-linecap="round"/>`;
+  if(mood==='joy') mouth = `
+    <path d="M${hx+14},${hy+10} q7,9 16,3" stroke="#7a5a3a" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M${hx+21},${hy+12} q4,6 9,4 q-3,3 -9,-1 Z" fill="#e88ba0"/>`;
+  if(mood==='think') mouth = `<path d="M${hx+22},${hy+12} q-6,2 -13,0" stroke="#7a5a3a" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M${hx-6},${hy-17} q6,-4 11,-1" stroke="${D}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+  if(mood==='surprise') mouth = `<ellipse cx="${hx+20}" cy="${hy+13}" rx="2.8" ry="3.4" fill="#7a5a3a"/>
+    <path d="M${hx-5},${hy-18} q6,-4 12,0" stroke="${D}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+  /* Langes, welliges Spaniel-Ohr (hängt über die Wange bis unter den Kinnrand) */
+  const ear = `
+    <path d="M${hx-7},${hy-18}
+      C${hx-21},${hy-10} ${hx-27},${hy+12} ${hx-24},${hy+32}
+      C${hx-23},${hy+42} ${hx-12},${hy+42} ${hx-10},${hy+33}
+      C${hx-8},${hy+21} ${hx-6},${hy+6} ${hx-2},${hy-8}
+      C${hx-1},${hy-16} ${hx-3},${hy-20} ${hx-7},${hy-18} Z" fill="${BE}"/>
+    <path d="M${hx-7},${hy-18} C${hx-21},${hy-10} ${hx-27},${hy+12} ${hx-24},${hy+32}"
+      stroke="#453726" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/>
+    <path d="M${hx-13},${hy-2} q-9,12 -7,27" stroke="${D}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".7"/>
+    <path d="M${hx-19},${hy+14} q-3,8 1,15" stroke="${D}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+    <circle cx="${hx-17}" cy="${hy+41}" r="2.6" fill="${BE}"/>`;
+  const headG = lookUp ? `<g transform="rotate(-14 ${hx} ${hy+8})">${head}${mouth}${ear}</g>` : `<g>${head}${mouth}${ear}</g>`;
+  return s + headG;
 }
 
 /* --- Mika (Igel, Gast aus dem ersten Buch) --- */

@@ -147,7 +147,7 @@
 })();
 
 /* Mini-Cover pro Buch */
-function miniCover(art, accent, palette){
+function miniCover(art, accent, palette, uid){
   const bg = `url(#g)`;
   let scene = '';
   if(art==='moon'){
@@ -160,13 +160,22 @@ function miniCover(art, accent, palette){
       <circle cx="37" cy="50" r="1.4" fill="#2b2a28"/>`;
   } else if(art==='dog'){
     scene = `
-      <ellipse cx="60" cy="46" rx="26" ry="13" fill="#1a1512"/>
-      <path d="M36,34 q-8,-2 -7,-13" stroke="#1a1512" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <circle cx="80" cy="30" r="11" fill="#1a1512"/>
-      <ellipse cx="85" cy="33" rx="6" ry="4.5" fill="#f3e2c0"/>
-      <circle cx="89" cy="31" r="1.8" fill="#100c0a"/>
-      <circle cx="77" cy="27" r="1.8" fill="#fff6e6"/>
-      <ellipse cx="90" cy="38" rx="4.5" ry="10" fill="#100c0a" transform="rotate(-10 90 38)"/>`;
+      <path d="M0,52 Q30,42 60,50 T120,46 V64 H0 Z" fill="${palette[1]}"/>
+      <ellipse cx="58" cy="44" rx="24" ry="11" fill="#2c211b"/>
+      <rect x="42" y="48" width="7" height="12" rx="3.5" fill="#1b1411"/>
+      <rect x="66" y="48" width="7" height="12" rx="3.5" fill="#1b1411"/>
+      <ellipse cx="45.5" cy="60" rx="5" ry="3" fill="#f8e6c4"/>
+      <ellipse cx="69.5" cy="60" rx="5" ry="3" fill="#f8e6c4"/>
+      <path d="M36,34 C26,30 22,18 26,10 C30,4 38,6 37,14 C36,20 40,26 44,29 Z" fill="#2c211b"/>
+      <path d="M38,42 C46,36 54,34 62,36 C68,38 70,44 66,48 C58,52 44,50 38,42 Z" fill="#e2b878" opacity=".95"/>
+      <circle cx="76" cy="26" r="15" fill="#2c211b"/>
+      <path d="M68,17 C56,20 50,34 53,48 C55,56 63,54 62,44 C61,34 64,24 68,17 Z" fill="#1b1411"/>
+      <path d="M74,30 C84,25 94,28 94,36 C94,43 86,48 78,46 C72,44 71,34 74,30 Z" fill="#f8e6c4"/>
+      <ellipse cx="92" cy="33" rx="4" ry="3.2" fill="#2a2220"/>
+      <ellipse cx="72" cy="24" rx="6" ry="6.6" fill="#ffffff"/>
+      <circle cx="73.5" cy="25" r="4.2" fill="#3a2a1c"/>
+      <circle cx="75.4" cy="22.4" r="1.7" fill="#ffffff"/>
+      <ellipse cx="69" cy="15" rx="3.2" ry="2.2" fill="#e2b878" transform="rotate(-14 69 15)"/>`;
   } else {
     scene = `
       <rect x="38" y="20" width="44" height="40" rx="5" fill="${accent}"/>
@@ -175,11 +184,12 @@ function miniCover(art, accent, palette){
       <rect x="54" y="40" width="20" height="4" rx="2" fill="rgba(255,255,255,.5)"/>
       <rect x="54" y="50" width="24" height="4" rx="2" fill="rgba(255,255,255,.35)"/>`;
   }
+  const gid = 'g-' + (uid || 'x');
   return `<svg viewBox="0 0 120 64" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+    <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="${palette[0]}"/><stop offset="100%" stop-color="${palette[1]}"/>
     </linearGradient></defs>
-    <rect width="120" height="64" fill="url(#g)"/>
+    <rect width="120" height="64" fill="url(#${gid})"/>
     ${scene}
   </svg>`;
 }
@@ -192,7 +202,7 @@ function miniCover(art, accent, palette){
       ${b.isNew ? '<div class="badge">bald</div>' : ''}
       <div class="cover" style="background:linear-gradient(180deg, ${b.palette[0]}, ${b.palette[1]})">
         <div class="spine"></div>
-        ${miniCover(b.art, b.accent, b.palette)}
+        ${miniCover(b.art, b.accent, b.palette, b.slug)}
       </div>
       <div class="body">
         <h2>${b.emoji} ${b.title}</h2>

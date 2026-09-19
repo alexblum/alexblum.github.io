@@ -255,14 +255,16 @@ function umkaLeg(cx, top, bot, w, col, pawCol){
 
 /* ---------- Umka: buschige Rute ---------- */
 function umkaTail(x,y){
-  return `<path d="M${x-38},${y+4}
-      C${x-58},${y+2} ${x-72},${y-14} ${x-68},${y-34}
-      C${x-66},${y-46} ${x-58},${y-50} ${x-54},${y-42}
-      C${x-52},${y-36} ${x-58},${y-28} ${x-56},${y-20}
-      C${x-54},${y-12} ${x-46},${y-6} ${x-38},${y+4} Z" fill="${P.fur}"/>
-    <path d="M${x-66},${y-38} C${x-60},${y-30} ${x-62},${y-18} ${x-54},${y-10}"
-      stroke="${P.furL}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"/>
-    <path d="M${x-50},${y-42} q-4,6 0,10" stroke="${P.tan}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".8"/>`;
+  /* breite, gefiederte Cocker-Rute: deutlich als Fellbüschel lesbar */
+  return `<path d="M${x-36},${y+7}
+      C${x-58},${y+6} ${x-79},${y-10} ${x-78},${y-31}
+      C${x-78},${y-49} ${x-68},${y-58} ${x-58},${y-49}
+      C${x-51},${y-43} ${x-61},${y-35} ${x-61},${y-25}
+      C${x-61},${y-14} ${x-49},${y-5} ${x-36},${y+7} Z" fill="${P.fur}"/>
+    <path d="M${x-72},${y-47} C${x-65},${y-38} ${x-70},${y-25} ${x-61},${y-14}"
+      stroke="${P.furL}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M${x-66},${y-48} q-5,8 -1,15 M${x-58},${y-43} q-5,8 -1,15"
+      stroke="${P.tan}" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".9"/>`;
 }
 
 /* ---------- Umka: Kopf (große Augen, breites welliges Hängeohr) ---------- */
@@ -301,22 +303,22 @@ function umkaHead(hx, hy, mood, lookUp){
   const browY = hy - (mood==='think'||mood==='surprise' ? 26 : 24);
   f += `<ellipse cx="${hx-5}" cy="${browY}" rx="5" ry="3.4" fill="${P.tan}" transform="rotate(-14 ${hx-5} ${browY})"/>
         <ellipse cx="${hx+13}" cy="${browY+2}" rx="4.2" ry="3" fill="${P.tan}" transform="rotate(-14 ${hx+13} ${browY+2})"/>`;
-  /* breites, welliges Hängeohr bis unter das Kinn */
+  /* breites, welliges Hängeohr bis unter das Kinn — das wichtigste Cocker-Merkmal */
   f += `<path d="M${hx-10},${hy-26}
-      C${hx-28},${hy-28} ${hx-42},${hy-16} ${hx-44},${hy-2}
-      C${hx-46},${hy+8} ${hx-42},${hy+14} ${hx-38},${hy+10}
-      C${hx-34},${hy+6} ${hx-36},${hy+2} ${hx-35},${hy-2}
-      C${hx-33},${hy-12} ${hx-24},${hy-22} ${hx-10},${hy-26} Z" fill="${P.furD}"/>
+      C${hx-32},${hy-31} ${hx-53},${hy-18} ${hx-54},${hy+2}
+      C${hx-56},${hy+18} ${hx-49},${hy+28} ${hx-43},${hy+20}
+      C${hx-38},${hy+14} ${hx-42},${hy+7} ${hx-40},${hy-1}
+      C${hx-37},${hy-14} ${hx-24},${hy-23} ${hx-10},${hy-26} Z" fill="${P.furD}"/>
     <path d="M${hx-12},${hy-24}
-      C${hx-26},${hy-22} ${hx-35},${hy-10} ${hx-36},${hy+4}
-      C${hx-37},${hy+18} ${hx-33},${hy+30} ${hx-26},${hy+36}
-      C${hx-19},${hy+42} ${hx-12},${hy+36} ${hx-12},${hy+26}
-      C${hx-12},${hy+16} ${hx-16},${hy+6} ${hx-15},${hy-4}
-      C${hx-14},${hy-14} ${hx-10},${hy-22} ${hx-12},${hy-24} Z" fill="${P.fur}"/>
-    <path d="M${hx-22},${hy-16} q-8,12 -7,26" stroke="${P.furL}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".85"/>
-    <path d="M${hx-31},${hy-6} q-5,14 -2,28" stroke="${P.furL}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
-    <path d="M${hx-20},${hy+2} q-5,10 -3,22" stroke="${P.furL}" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".55"/>
-    <path d="M${hx-27},${hy+32} q-4,5 -9,5" stroke="${P.tan}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"/>`;
+      C${hx-30},${hy-23} ${hx-44},${hy-9} ${hx-45},${hy+8}
+      C${hx-46},${hy+25} ${hx-39},${hy+42} ${hx-29},${hy+47}
+      C${hx-19},${hy+51} ${hx-11},${hy+41} ${hx-13},${hy+29}
+      C${hx-14},${hy+17} ${hx-20},${hy+7} ${hx-17},${hy-4}
+      C${hx-15},${hy-14} ${hx-10},${hy-22} ${hx-12},${hy-24} Z" fill="${P.fur}"/>
+    <path d="M${hx-27},${hy-17} q-10,14 -7,31 M${hx-37},${hy-7} q-8,16 -3,31 M${hx-25},${hy+9} q-5,15 -1,29"
+      stroke="${P.furL}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".9"/>
+    <path d="M${hx-38},${hy+37} q-5,7 -12,5 M${hx-30},${hy+43} q-5,7 -11,7"
+      stroke="${P.tan}" stroke-width="2.8" fill="none" stroke-linecap="round" opacity=".85"/>`;
   return (lookUp ? `<g transform="rotate(-13 ${hx-4} ${hy+24})">` : '<g>') + f + '</g>';
 }
 

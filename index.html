@@ -176,6 +176,19 @@ function miniCover(art, accent, palette, uid){
       <circle cx="73.5" cy="25" r="4.2" fill="#3a2a1c"/>
       <circle cx="75.4" cy="22.4" r="1.7" fill="#ffffff"/>
       <ellipse cx="69" cy="15" rx="3.2" ry="2.2" fill="#e2b878" transform="rotate(-14 69 15)"/>`;
+  } else if(art==='rabbit'){
+    scene = `
+      <path d="M0,52 Q30,40 60,48 T120,46 V64 H0 Z" fill="${palette[1]}"/>
+      <path d="M44,30 C42,16 44,6 50,4 C55,3 57,12 54,28 Z" fill="#a7adba"/>
+      <path d="M46.5,26 C46,16 48,9 50.5,8 C52.5,7.5 53,15 51,26 Z" fill="#e6a9b6"/>
+      <path d="M58,28 C60,14 66,6 71,8 C76,10 72,22 66,32 Z" fill="#a7adba"/>
+      <path d="M60.5,26 C62.5,15 66.5,9 69,10.5 C71.5,12 68.5,21 64,29 Z" fill="#e6a9b6"/>
+      <ellipse cx="58" cy="44" rx="18" ry="12" fill="#a7adba"/>
+      <circle cx="62" cy="36" r="12" fill="#a7adba"/>
+      <ellipse cx="70" cy="39" rx="5" ry="3.8" fill="#e6e9f0"/>
+      <ellipse cx="73.5" cy="38" rx="1.6" ry="1.4" fill="#e88ba0"/>
+      <circle cx="68" cy="33" r="1.6" fill="#2b2a28"/>
+      <path d="M71,41.5 q-2,1.6 -4,.5" stroke="#6b7080" stroke-width="1" fill="none" stroke-linecap="round"/>`;
   } else {
     scene = `
       <rect x="38" y="20" width="44" height="40" rx="5" fill="${accent}"/>

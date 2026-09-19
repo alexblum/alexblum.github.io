@@ -26,5 +26,18 @@ window.BOOKS = [
     palette: ["#2f6b45", "#1e4531"],
     accent: "#e8735c",
     art: "dog"
+  },
+  {
+    slug: "umka-haessen",
+    title: "Umka und das kleine Häschen",
+    subtitle: "Eine Freundschaftsgeschichte zum Lesenüben",
+    emoji: "🐰",
+    author: "von Papa",
+    chapters: 4,
+    pages: 14,
+    palette: ["#7cb98a", "#1e4531"],
+    accent: "#e8735c",
+    art: "rabbit",
+    isNew: true
   }
 ];

@@ -55,11 +55,21 @@ document.addEventListener('DOMContentLoaded', function () {
     return el;
   }
 
+  function setIllustration(markup, label) {
+    stage.innerHTML = markup || '';
+    const svg = stage.querySelector('svg');
+    if (svg) {
+      svg.classList.add('story-illustration');
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', label);
+    }
+  }
+
   function render() {
     const p = pages[idx];
     card.querySelectorAll('.cover-only').forEach(n => n.remove());
     if (p.cover) {
-      stage.innerHTML = S.coverSvg || '';
+      setIllustration(S.coverSvg, `${S.title} – Titelbild`);
       pagenum.textContent = '';
       const el = setStoryEl('');
       el.innerHTML = '';
@@ -76,14 +86,14 @@ document.addEventListener('DOMContentLoaded', function () {
       prevBtn.disabled = true;
       nextBtn.disabled = false;
     } else if (p.chapterTitle) {
-      stage.innerHTML = S.chapterSvg || '';
+      setIllustration(S.chapterSvg, `${S.title} – Kapitel ${p.num}: ${p.title}`);
       const el = setStoryEl('story-text chapter-title');
       el.innerHTML = `<div class="chlabel">Kapitel ${p.num}</div><div>${p.title}</div>`;
       pagenum.textContent = '';
       prevBtn.disabled = false;
       nextBtn.disabled = idx === pages.length - 1;
     } else {
-      stage.innerHTML = p.svg;
+      setIllustration(p.svg, `${S.title} – Seite ${idx}`);
       const el = setStoryEl('story-text');
       el.textContent = p.text;
       pagenum.textContent = `Seite ${idx} von ${pages.length - 1}`;

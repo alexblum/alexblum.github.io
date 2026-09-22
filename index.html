@@ -73,7 +73,17 @@
     padding:0 14px;
     position:relative;
   }
-  .cover svg{width:100%;height:auto;display:block;max-height:150px;}
+  .cover svg{
+    width:100%;height:auto;display:block;max-height:158px;
+    filter:drop-shadow(0 8px 10px rgba(0,0,0,.24));
+    transition:transform .2s ease;
+  }
+  .bookcard:hover .cover svg{transform:scale(1.035);}
+  .cover:after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(115deg,rgba(255,255,255,.16),transparent 34%,transparent 72%,rgba(0,0,0,.12));
+    mix-blend-mode:soft-light;
+  }
   .spine{
     position:absolute;left:0;top:0;bottom:0;width:10px;
     background:linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.08));
@@ -184,6 +194,7 @@ function miniCover(art, accent, palette, uid){
       <path d="M58,28 C60,14 66,6 71,8 C76,10 72,22 66,32 Z" fill="#a7adba"/>
       <path d="M60.5,26 C62.5,15 66.5,9 69,10.5 C71.5,12 68.5,21 64,29 Z" fill="#e6a9b6"/>
       <ellipse cx="58" cy="44" rx="18" ry="12" fill="#a7adba"/>
+      <circle cx="41" cy="43" r="6.5" fill="#e6e9f0" stroke="#8d93a2" stroke-width="1.2"/>
       <circle cx="62" cy="36" r="12" fill="#a7adba"/>
       <ellipse cx="70" cy="39" rx="5" ry="3.8" fill="#e6e9f0"/>
       <ellipse cx="73.5" cy="38" rx="1.6" ry="1.4" fill="#e88ba0"/>
@@ -198,7 +209,7 @@ function miniCover(art, accent, palette, uid){
       <rect x="54" y="50" width="24" height="4" rx="2" fill="rgba(255,255,255,.35)"/>`;
   }
   const gid = 'g-' + (uid || 'x');
-  return `<svg viewBox="0 0 120 64" xmlns="http://www.w3.org/2000/svg">
+  return `<svg viewBox="0 0 120 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="${palette[0]}"/><stop offset="100%" stop-color="${palette[1]}"/>
     </linearGradient></defs>

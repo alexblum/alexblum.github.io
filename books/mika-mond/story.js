@@ -7,7 +7,8 @@ function scene({moon='hidden', owl=false, mouth='smile', arms=false, sparkle=fal
     const y = (i*37.3)%110 + 6;
     const r = (i%3===0)?1.8:1.1;
     const delay = (i%5)*0.5;
-    return `<circle class="star" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="#fff3d0" style="animation-delay:${delay}s"/>`;
+    const opacity = (i%4===0) ? '.95' : (i%2===0 ? '.7' : '.45');
+    return `<circle class="star" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="#fff3d0" opacity="${opacity}" style="animation-delay:${delay}s"/>`;
   }).join('');
 
   let moonGroup = '';
@@ -23,10 +24,10 @@ function scene({moon='hidden', owl=false, mouth='smile', arms=false, sparkle=fal
       </g>`;
   } else if(moon==='peek'){
     moonGroup = `
+      ${glow? '<circle cx="205" cy="55" r="46" fill="url(#glowGrad)"/>':''}
       <circle cx="205" cy="55" r="30" fill="url(#moonGrad)"/>
       <circle cx="195" cy="46" r="4" fill="#e0b355" opacity=".45"/>
       <circle cx="214" cy="62" r="3" fill="#e0b355" opacity=".4"/>
-      ${glow? '<circle cx="205" cy="55" r="46" fill="url(#glowGrad)"/>':''}
       <g>
         <ellipse cx="150" cy="66" rx="34" ry="18" fill="#2c3c62"/>
         <ellipse cx="178" cy="72" rx="30" ry="15" fill="#33456e"/>
@@ -103,7 +104,7 @@ function scene({moon='hidden', owl=false, mouth='smile', arms=false, sparkle=fal
     <g>
       ${armsGroup}
       <ellipse cx="200" cy="180" rx="9" ry="5" fill="#173325" opacity=".5"/>
-      <ellipse cx="200" cy="172" rx="30" ry="24" fill="#c9793f"/>
+      <ellipse cx="200" cy="172" rx="30" ry="24" fill="#c9793f" stroke="#9a5727" stroke-width="1"/>
       <g fill="#a6602b">
         <polygon points="176,158 168,146 182,152"/>
         <polygon points="184,150 178,136 192,145"/>
@@ -113,6 +114,7 @@ function scene({moon='hidden', owl=false, mouth='smile', arms=false, sparkle=fal
         <polygon points="230,160 238,148 240,162"/>
       </g>
       <ellipse cx="207" cy="185" rx="15" ry="12" fill="#f0c99b"/>
+      <path d="M197,166 q8,-6 16,0" stroke="#e3a16a" stroke-width="2" fill="none" stroke-linecap="round" opacity=".65"/>
       <circle cx="214" cy="181" r="2.3" fill="#2b2a28"/>
       <circle cx="219" cy="188" r="2.6" fill="#2b2a28"/>
       ${mouthPath}

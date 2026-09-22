@@ -19,10 +19,12 @@ function sun(x=44,y=40){
     const a=i/8*Math.PI*2;
     rays+=`<line x1="${(x+Math.cos(a)*19).toFixed(1)}" y1="${(y+Math.sin(a)*19).toFixed(1)}" x2="${(x+Math.cos(a)*25).toFixed(1)}" y2="${(y+Math.sin(a)*25).toFixed(1)}" stroke="#f6c667" stroke-width="2.5" stroke-linecap="round"/>`;
   }
-  return `<circle cx="${x}" cy="${y}" r="15" fill="#f6c667"/>${rays}`;
+  return `<circle cx="${x}" cy="${y}" r="28" fill="#f6c667" opacity=".13"/>
+    <circle cx="${x}" cy="${y}" r="15" fill="#f6c667"/>${rays}`;
 }
 function cloud(x,y,s=1){
   return `<g opacity=".9" transform="translate(${x},${y}) scale(${s})">
+    <ellipse cx="0" cy="5" rx="25" ry="9" fill="#9bc8d5" opacity=".35"/>
     <ellipse cx="0" cy="0" rx="22" ry="10" fill="#ffffff"/>
     <ellipse cx="-14" cy="4" rx="14" ry="8" fill="#ffffff"/>
     <ellipse cx="15" cy="4" rx="15" ry="9" fill="#ffffff"/>
@@ -46,7 +48,8 @@ function ground(sky, place){
   const top = sky==='night' ? '#173325' : place==='forest' ? '#2c5a3f' : place==='meadow' ? '#7cb98a' : '#6fae7f';
   const bot = sky==='night' ? '#0f1a33' : place==='forest' ? '#1e4531' : place==='meadow' ? '#55966b' : '#55966b';
   return `<path d="M0,172 Q100,156 200,170 T400,166 V230 H0 Z" fill="${top}"/>
-          <path d="M0,194 Q120,178 230,194 T400,188 V230 H0 Z" fill="${bot}"/>`;
+          <path d="M0,194 Q120,178 230,194 T400,188 V230 H0 Z" fill="${bot}"/>
+          <path d="M0,176 Q100,160 200,174 T400,170" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none"/>`;
 }
 function flower(x,y,c='#e8735c'){
   return `<g><line x1="${x}" y1="${y}" x2="${x}" y2="${y-9}" stroke="#3f7d5a" stroke-width="1.5"/>
@@ -317,11 +320,9 @@ function dog(x=170, y=168, pose='stand', mood='smile', lookUp=false){
 function ossi(x=280, y=172, s=1.35, flip=false){
   return `<g transform="translate(${x},${y}) scale(${flip?-s:s},${s})">
     <ellipse cx="6" cy="3" rx="27" ry="4" fill="#173325" opacity=".28"/>
-    <circle cx="-18" cy="-16" r="5" fill="${P.rabbitL}"/>
-    <path d="M-11,-24 C-9,-38 -20,-44 -28,-41 C-36,-38 -40,-28 -33,-23 C-28,-19 -21,-21 -18,-27 C-15,-33 -12,-31 -11,-24 Z" fill="${P.rabbit}"/>
-    <path d="M10,-26 C12,-42 4,-50 -4,-48 C-12,-46 -16,-34 -9,-29 C-4,-25 2,-28 5,-35 C7,-41 9,-38 10,-26 Z" fill="${P.rabbitD}"/>
     <ellipse cx="2" cy="-13" rx="24" ry="16" fill="${P.rabbit}"/>
     <ellipse cx="10" cy="-8" rx="13" ry="8.5" fill="#c9cdd9"/>
+    <circle cx="-19" cy="-14" r="7" fill="${P.rabbitL}" stroke="${P.rabbitD}" stroke-width="1.2"/>
     <path d="M-17,-8 C-12,-13 -2,-15 6,-13" stroke="${P.rabbitD}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
     <path d="M-6,-4 C1,-7 12,-7 19,-3" stroke="${P.rabbitD}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".45"/>
     <rect x="10" y="-8" width="4.6" height="11" rx="2.3" fill="${P.rabbitD}"/>
@@ -362,9 +363,9 @@ function scene(o={}){
   if(o.doghouse) s += doghouse(46,178);
   if(o.bowl) s += bowl(o.bowl);
   if(o.carrot) s += carrot(o.carrot.x||300, o.carrot.y||172);
-  if(o.girl) s += girl(o.girlX||130, o.girlHug);
   if(o.butterfly) s += butterfly(o.butterflyX||270,o.butterflyY||120);
   if(o.dog) s += dog(o.dog.x, o.dog.y, o.dog.pose, o.dog.mood, o.dog.lookUp);
+  if(o.girl) s += girl(o.girlX||130, o.girlHug);
   if(o.ossi) s += ossi(o.ossi.x||280, o.ossi.y||172, o.ossi.s||1.35, o.ossi.flip);
   if(o.sound) s += sound(o.sound.x, o.sound.y);
   if(o.jumpArc) s += jump(o.jumpArc.x, o.jumpArc.y);
@@ -400,13 +401,13 @@ window.STORY = {
       title: "Wer bist du?",
       pages: [
         { svg: scene({sky:'day', place:'forest', bush:{x:56,y:176,s:1.5},
-            dog:{x:220,y:170,pose:'stand',mood:'think',lookUp:true}, ossi:{x:285,y:172,s:1.15,flip:true}}),
+            dog:{x:175,y:170,pose:'stand',mood:'think',lookUp:true}, ossi:{x:315,y:172,s:1.15,flip:true}}),
           text:"Der Hase zittert ein bisschen. „Hopps!“, sagt er leise. Umka ist neugierig, aber er geht nicht näher ran." },
         { svg: scene({sky:'day', place:'forest', bush:{x:56,y:176,s:1.5},
-            dog:{x:215,y:170,pose:'sit',mood:'smile'}, ossi:{x:285,y:172,s:1.25,flip:true}}),
+            dog:{x:175,y:170,pose:'sit',mood:'smile'}, ossi:{x:315,y:172,s:1.25,flip:true}}),
           text:"Umka setzt sich auf den Boden. Er atmet ruhig. So fühlt sich der kleine Hase sicherer." },
         { svg: scene({sky:'day', place:'forest', bush:{x:56,y:176,s:1.5},
-            dog:{x:215,y:170,pose:'sit',mood:'joy'}, ossi:{x:285,y:172,s:1.35,flip:true}, heart:{x:255,y:100}}),
+            dog:{x:175,y:170,pose:'sit',mood:'joy'}, ossi:{x:315,y:172,s:1.35,flip:true}, heart:{x:255,y:100}}),
           text:"„Ich bin Ossi“, sagt der Hase. „Und du?“ – „Ich bin Umka. Möchtest du mein Freund sein?“ Ossi nickt schnell mit den Ohren." }
       ]
     },
@@ -430,11 +431,11 @@ window.STORY = {
     {
       title: "Ossi zu Besuch",
       pages: [
-        { svg: scene({sky:'day', place:'garden', flowers:true, fence:true, house:true, girl:118,
-            dog:{x:205,y:172,pose:'stand',mood:'joy'}, ossi:{x:308,y:174,s:1.05,flip:true}}),
+        { svg: scene({sky:'day', place:'garden', flowers:true, fence:true, house:true, girl:104,
+            dog:{x:190,y:172,pose:'stand',mood:'joy'}, ossi:{x:330,y:174,s:1.05,flip:true}}),
           text:"Am nächsten Tag lädt Umka Ossi in den Garten ein. Das kleine Mädchen staunt: „Hopps! Umka hat einen Freund!“" },
         { svg: scene({sky:'day', place:'garden', flowers:true, house:true, bowl:330,
-            dog:{x:200,y:172,pose:'stand',mood:'smile'}, ossi:{x:314,y:174,s:1.1,flip:true}}),
+            dog:{x:165,y:172,pose:'stand',mood:'smile'}, ossi:{x:314,y:174,s:1.1,flip:true}}),
           text:"Ossi sitzt in dem warmen Gras. Er isst zum ersten Mal Karotten aus einer Schale. Umka passt gut auf ihn auf." },
         { svg: scene({sky:'day', place:'garden', flowers:true, fence:true,
             dog:{x:150,y:170,pose:'stand',mood:'joy'}, ossi:{x:280,y:172,s:1.45,flip:true}, butterfly:{x:330,y:105}}),

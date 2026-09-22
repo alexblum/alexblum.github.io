@@ -19,10 +19,12 @@ function sun(x=44,y=40){
     const a=i/8*Math.PI*2;
     rays+=`<line x1="${(x+Math.cos(a)*19).toFixed(1)}" y1="${(y+Math.sin(a)*19).toFixed(1)}" x2="${(x+Math.cos(a)*25).toFixed(1)}" y2="${(y+Math.sin(a)*25).toFixed(1)}" stroke="#f6c667" stroke-width="2.5" stroke-linecap="round"/>`;
   }
-  return `<circle cx="${x}" cy="${y}" r="15" fill="#f6c667"/>${rays}`;
+  return `<circle cx="${x}" cy="${y}" r="28" fill="#f6c667" opacity=".13"/>
+    <circle cx="${x}" cy="${y}" r="15" fill="#f6c667"/>${rays}`;
 }
 function cloud(x,y,s=1){
   return `<g opacity=".9" transform="translate(${x},${y}) scale(${s})">
+    <ellipse cx="0" cy="5" rx="25" ry="9" fill="#9bc8d5" opacity=".35"/>
     <ellipse cx="0" cy="0" rx="22" ry="10" fill="#ffffff"/>
     <ellipse cx="-14" cy="4" rx="14" ry="8" fill="#ffffff"/>
     <ellipse cx="15" cy="4" rx="15" ry="9" fill="#ffffff"/>
@@ -46,7 +48,8 @@ function ground(sky, place){
   const top = sky==='night' ? '#173325' : place==='forest' ? '#2c5a3f' : '#6fae7f';
   const bot = sky==='night' ? '#0f1a33' : place==='forest' ? '#1e4531' : '#55966b';
   return `<path d="M0,172 Q100,156 200,170 T400,166 V230 H0 Z" fill="${top}"/>
-          <path d="M0,194 Q120,178 230,194 T400,188 V230 H0 Z" fill="${bot}"/>`;
+          <path d="M0,194 Q120,178 230,194 T400,188 V230 H0 Z" fill="${bot}"/>
+          <path d="M0,176 Q100,160 200,174 T400,170" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none"/>`;
 }
 function flower(x,y,c='#e8735c'){
   return `<g><line x1="${x}" y1="${y}" x2="${x}" y2="${y-9}" stroke="#3f7d5a" stroke-width="1.5"/>

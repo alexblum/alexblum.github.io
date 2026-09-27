@@ -39,5 +39,18 @@ window.BOOKS = [
     accent: "#e8735c",
     art: "rabbit",
     isNew: true
+  },
+  {
+    slug: "umka-herbstpicknick",
+    title: "Umka und das Herbstpicknick",
+    subtitle: "Ein lustiges Abenteuer mit einem neuen Freund",
+    emoji: "🍂",
+    author: "von Papa",
+    chapters: 4,
+    pages: 16,
+    palette: ["#d98a32", "#70411f"],
+    accent: "#f3bd3f",
+    art: "squirrel",
+    isNew: true
   }
 ];

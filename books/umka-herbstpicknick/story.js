@@ -186,8 +186,8 @@ const P = {
   fur:  '#2c211b',
   furD: '#1b1411',
   furL: '#412f24',
-  tan:  '#e2b878',
-  tanL: '#f8e6c4',
+  tan:  '#3f3834',
+  tanL: '#514944',
   nose: '#2a2220',
   line: '#60492f',
   rabbit:  '#a7adba',
@@ -399,7 +399,10 @@ function picnic(x=200,y=188,mess=false,full=false){
   </g>`;
 }
 function blanketCarrier(x=330,y=145){
-  return `<g><path d="M${x-35},${y-22} q35,-20 70,0 v45 q-35,13 -70,0 Z" fill="#f4e3bd" stroke="#d65f4c" stroke-width="3"/>
+  return `<g>
+    <path d="M${x-22},${y-19} C${x-25},${y-52} ${x-16},${y-75} ${x-5},${y-73} C${x+7},${y-70} ${x+4},${y-39} ${x+1},${y-18} Z" fill="#8d93a2" stroke="#6b7080" stroke-width="2"/>
+    <path d="M${x+5},${y-18} C${x+6},${y-50} ${x+19},${y-69} ${x+29},${y-64} C${x+39},${y-58} ${x+25},${y-31} ${x+20},${y-14} Z" fill="#a7adba" stroke="#6b7080" stroke-width="2"/>
+    <path d="M${x-35},${y-22} q35,-20 70,0 v45 q-35,13 -70,0 Z" fill="#f4e3bd" stroke="#d65f4c" stroke-width="3"/>
     <path d="M${x-16},${y-28} v58 M${x+14},${y-29} v60" stroke="#d65f4c" stroke-width="2" opacity=".6"/>
     <ellipse cx="${x-20}" cy="${y+31}" rx="6" ry="3" fill="#8d93a2"/><ellipse cx="${x+18}" cy="${y+31}" rx="6" ry="3" fill="#8d93a2"/></g>`;
 }

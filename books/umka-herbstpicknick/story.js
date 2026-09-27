@@ -348,13 +348,20 @@ function ossi(x=280, y=172, s=1.35, flip=false){
 function mika(x=90,y=176,s=1,flip=false){
   const d=flip?-s:s;
   return `<g transform="translate(${x},${y}) scale(${d},${s})">
-    <ellipse cx="-11" cy="-2" rx="4.6" ry="3" fill="#6d3c19"/>
-    <ellipse cx="9" cy="-2" rx="4.6" ry="3" fill="#6d3c19"/>
-    <path d="M-20,-4 C-22,-14 -16,-22 -8,-24 L-9,-32 L-4,-25 L-1,-34 L4,-25 L9,-31 L11,-23 C19,-22 23,-13 21,-4 C18,2 -14,2 -20,-4 Z" fill="#8a4f22"/>
-    <path d="M-11,-24 l-2,-7 l6,4 Z M-3,-25 l-1,-9 l5,6 Z M6,-25 l3,-7 l1,8 Z" fill="#6d3c19"/>
-    <path d="M14,-6 C20,-10 26,-8 27,-2 C28,3 22,6 16,5 C12,4 12,-3 14,-6 Z" fill="${P.skin}"/>
-    <circle cx="25" cy="-3.4" r="2.4" fill="#3b2a20"/><circle cx="20.6" cy="-5.6" r="2" fill="#2b2a28"/>
-    <circle cx="21.2" cy="-6.4" r=".7" fill="#fff"/><path d="M18,-1 q3,2.4 6,.6" stroke="#8a5a2b" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="0" cy="4" rx="25" ry="4.5" fill="#173325" opacity=".25"/>
+    <ellipse cx="-9" cy="-1" rx="5.5" ry="3.4" fill="#6d3c19"/>
+    <ellipse cx="11" cy="-1" rx="5.5" ry="3.4" fill="#6d3c19"/>
+    <path d="M-24,-5 C-25,-16 -19,-26 -9,-29
+      L-11,-38 L-4,-30 L0,-41 L5,-30 L12,-37 L13,-27
+      C21,-23 25,-14 23,-6 C20,1 -16,2 -24,-5 Z" fill="#8a4f22" stroke="#603516" stroke-width="1.3"/>
+    <path d="M-16,-25 l-3,-9 l7,5 M-7,-29 l1,-10 l5,9 M3,-30 l5,-9 l1,10 M12,-26 l7,-7 l-1,10"
+      stroke="#5d3215" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5,-17 C13,-23 24,-21 30,-13 C35,-6 31,3 22,6 C13,8 5,2 3,-7 C2,-11 3,-14 5,-17 Z" fill="#f0c99b" stroke="#9f704a" stroke-width="1.2"/>
+    <path d="M7,-15 C12,-18 17,-19 21,-17" stroke="#ddb386" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="22" cy="-10" r="2.5" fill="#2b2a28"/><circle cx="22.8" cy="-10.8" r=".8" fill="#fff"/>
+    <circle cx="31" cy="-5" r="3" fill="#3b2a20"/><ellipse cx="30.2" cy="-6" rx=".9" ry=".6" fill="#fff" opacity=".55"/>
+    <path d="M24,0 q3,2.5 6,0" stroke="#8a5a2b" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <circle cx="8" cy="-17" r="3" fill="#c98f62"/>
   </g>`;
 }
 function squirrel(x=310,y=172,s=1,flip=false,withNut=false){
@@ -429,7 +436,7 @@ window.STORY = {
   subtitle: "Ein lustiges Abenteuer mit einem neuen Freund",
   emoji: "🍂",
   coverSvg: scene({sky:'day',place:'meadow',autumn:true,picnic:{x:205,y:188},
-    dog:{x:105,y:168,pose:'sit',mood:'joy'},mika:{x:225,y:174,s:1.05},ossi:{x:285,y:173,s:1.05,flip:true},squirrel:{x:355,y:171,s:.95,flip:true,withNut:true}}),
+    dog:{x:105,y:168,pose:'sit',mood:'joy'},mika:{x:215,y:174,s:1.0},ossi:{x:300,y:173,s:1.0,flip:true},squirrel:{x:355,y:171,s:.95,flip:true,withNut:true}}),
   chapterSvg: scene({sky:'day',place:'forest',tree:true,autumn:true,wind:true,
     dog:{x:175,y:169,pose:'stand',mood:'smile'},mika:{x:90,y:176,s:1.15},ossi:{x:330,y:173,s:1.05,flip:true}}),
   chapters: [
@@ -462,7 +469,7 @@ window.STORY = {
     {
       title: "Der wilde Blättersturm",
       pages: [
-        {svg:scene({sky:'day',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'joy'},mika:{x:275,y:175,s:1.05},ossi:{x:330,y:173,s:1.0,flip:true},squirrel:{x:375,y:171,s:.85,flip:true}}),
+        {svg:scene({sky:'day',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'joy'},mika:{x:255,y:175,s:1.0},ossi:{x:330,y:173,s:1.0,flip:true},squirrel:{x:375,y:171,s:.85,flip:true}}),
           text:"Alle lachen. Flitzi darf mitessen. Es knabbert so schnell, dass seine Backen rund wie zwei kleine Bälle werden."},
         {svg:scene({sky:'dusk',place:'meadow',autumn:true,wind:true,picnic:{x:210,y:188,mess:true},dog:{x:95,y:167,pose:'stand',mood:'surprise'},squirrel:{x:345,y:171,s:1,flip:true}}),
           text:"Da pustet ein starker Windstoß über die Wiese. Die Servietten fliegen los. Eine landet auf Umkas Kopf wie ein Hut."},
@@ -475,9 +482,9 @@ window.STORY = {
     {
       title: "Vier Freunde im Herbst",
       pages: [
-        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'smile'},mika:{x:260,y:175,s:1.05},ossi:{x:315,y:173,s:1,flip:true},squirrel:{x:375,y:170,s:.85,flip:true}}),
+        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'smile'},mika:{x:235,y:175,s:1.0},ossi:{x:320,y:173,s:1,flip:true},squirrel:{x:375,y:170,s:.85,flip:true}}),
           text:"Bald liegt alles wieder auf der Decke. Nur Umkas Servietten-Hut bleibt. Er gefällt ihm nämlich sehr gut."},
-        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'joy'},mika:{x:260,y:175,s:1.05},ossi:{x:315,y:173,s:1,flip:true},squirrel:{x:375,y:170,s:.85,flip:true,withNut:true}}),
+        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'joy'},mika:{x:235,y:175,s:1.0},ossi:{x:320,y:173,s:1,flip:true},squirrel:{x:375,y:170,s:.85,flip:true,withNut:true}}),
           text:"Zum Nachtisch teilt Flitzi seine Nüsse. Ossi probiert eine und knackt sie viel zu laut. Alle erschrecken und lachen dann noch lauter."},
         {svg:scene({sky:'dusk',place:'forest',tree:true,autumn:true,dog:{x:110,y:168,pose:'stand',mood:'smile'},mika:{x:220,y:175,s:1.05},ossi:{x:285,y:173,s:1},squirrel:{x:350,y:170,s:1.05,flip:true},heart:{x:300,y:95}}),
           text:"„Kommst du beim nächsten Picknick wieder?“, fragt Mika. Flitzi nickt so heftig, dass ein Blatt auf seiner Nase landet."},

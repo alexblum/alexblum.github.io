@@ -364,7 +364,7 @@ function mika(x=90,y=176,s=1,flip=false){
     <circle cx="8" cy="-17" r="3" fill="#c98f62"/>
   </g>`;
 }
-function squirrel(x=310,y=172,s=1,flip=false,withNut=false){
+function squirrel(x=310,y=172,s=1,flip=false,withNut=false,withApple=false){
   const d=flip?-s:s;
   return `<g transform="translate(${x},${y}) scale(${d},${s})">
     <ellipse cx="0" cy="4" rx="25" ry="4" fill="#173325" opacity=".25"/>
@@ -376,6 +376,7 @@ function squirrel(x=310,y=172,s=1,flip=false,withNut=false){
     <circle cx="18" cy="-37" r="2.2" fill="#282320"/><circle cx="18.8" cy="-37.8" r=".7" fill="#fff"/>
     <path d="M12,-2 L8,5 M22,-2 L24,5" stroke="#8f451f" stroke-width="4" stroke-linecap="round"/>
     ${withNut?`<ellipse cx="30" cy="-14" rx="5" ry="7" fill="#8a5a2b"/><path d="M26,-20 q4,-4 8,0" stroke="#5c3a20" stroke-width="2" fill="none"/>`:''}
+    ${withApple?`<circle cx="30" cy="-14" r="8" fill="#d95842"/><path d="M29,-22 q2,-5 5,-6" stroke="#5c3a20" stroke-width="2" fill="none"/><ellipse cx="35" cy="-25" rx="4" ry="2" fill="#4c8a67" transform="rotate(-25 35 -25)"/>`:''}
   </g>`;
 }
 function autumn(o={}){
@@ -387,14 +388,42 @@ function autumn(o={}){
   }
   return a;
 }
-function picnic(x=200,y=188,mess=false){
+function picnic(x=200,y=188,mess=false,full=false){
   return `<g><path d="M${x-72},${y-10} L${x+72},${y-10} L${x+92},${y+25} L${x-90},${y+25} Z" fill="#f4e3bd" stroke="#d65f4c" stroke-width="3"/>
     <path d="M${x-50},${y-9} l18,34 M${x},${y-9} l18,34 M${x+50},${y-9} l18,34" stroke="#d65f4c" stroke-width="2" opacity=".65"/>
-    <rect x="${x-12}" y="${y-25}" width="28" height="18" rx="4" fill="#9a6032"/><path d="M${x-7},${y-25} q9,-14 18,0" stroke="#70411f" stroke-width="3" fill="none"/>
-    <circle cx="${x+36}" cy="${y-14}" r="8" fill="#d95842"/><path d="M${x+34},${y-22} q4,-6 7,-1" stroke="#3f7d5a" stroke-width="2" fill="none"/>
+    <rect x="${x-12}" y="${y-28}" width="34" height="21" rx="4" fill="#9a6032"/><path d="M${x-7},${y-28} q12,-16 24,0" stroke="#70411f" stroke-width="3" fill="none"/>
+    <circle cx="${x+42}" cy="${y-14}" r="8" fill="#d95842"/><path d="M${x+40},${y-22} q4,-6 7,-1" stroke="#3f7d5a" stroke-width="2" fill="none"/>
     <path d="M${x-44},${y-20} l18,0 l-9,14 Z" fill="#f6d27a" stroke="#c58a3a"/>
+    ${full?`<path d="M${x-67},${y-18} q15,-10 29,0 l-3,8 h-23 Z" fill="#d9a95f" stroke="#9a6032"/><circle cx="${x+58}" cy="${y-12}" r="7" fill="#d95842"/><circle cx="${x+70}" cy="${y-12}" r="7" fill="#c94838"/><circle cx="${x-8}" cy="${y-36}" r="3.5" fill="#923e75"/><circle cx="${x+1}" cy="${y-38}" r="3.5" fill="#923e75"/>`:''}
     ${mess?`<path d="M${x+55},${y-35} q13,-12 26,0" stroke="#fff" stroke-width="3" fill="none"/><circle cx="${x+80}" cy="${y-37}" r="3" fill="#fff"/>`:''}
   </g>`;
+}
+function blanketCarrier(x=330,y=145){
+  return `<g><path d="M${x-35},${y-22} q35,-20 70,0 v45 q-35,13 -70,0 Z" fill="#f4e3bd" stroke="#d65f4c" stroke-width="3"/>
+    <path d="M${x-16},${y-28} v58 M${x+14},${y-29} v60" stroke="#d65f4c" stroke-width="2" opacity=".6"/>
+    <ellipse cx="${x-20}" cy="${y+31}" rx="6" ry="3" fill="#8d93a2"/><ellipse cx="${x+18}" cy="${y+31}" rx="6" ry="3" fill="#8d93a2"/></g>`;
+}
+function appleMotion(x,y){
+  return `<g><circle cx="${x}" cy="${y}" r="8" fill="#d95842"/><path d="M${x-3},${y-8} q3,-6 7,-6" stroke="#5c3a20" stroke-width="2" fill="none"/><path d="M${x-28},${y+2} q8,-8 16,0" stroke="#fff" stroke-width="2" fill="none" opacity=".9"/></g>`;
+}
+function tracks(x=205,y=175){
+  return Array.from({length:5},(_,i)=>`<ellipse cx="${x+i*18}" cy="${y-(i%2)*5}" rx="3" ry="2" fill="#6b4a2c" transform="rotate(${i%2?20:-20} ${x+i*18} ${y})"/>`).join('');
+}
+function oak(){
+  return `<g>
+    <path d="M250,184 C244,143 246,105 257,68 L278,68 C288,108 284,147 280,184 Z" fill="#6b421f"/>
+    <path d="M260,105 L205,79 M275,101 L325,72 M263,82 L238,48" stroke="#6b421f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="248" cy="42" r="42" fill="#7f9a3d"/><circle cx="205" cy="68" r="35" fill="#a27e32"/>
+    <circle cx="300" cy="55" r="42" fill="#b66b2e"/><circle cx="338" cy="76" r="30" fill="#d18a32"/>
+    <circle cx="270" cy="75" r="40" fill="#8f8f38"/><circle cx="225" cy="34" r="25" fill="#c4842f"/>
+  </g>`;
+}
+function leaf(x,y,c='#e69a32',r=0){
+  return `<ellipse cx="${x}" cy="${y}" rx="6" ry="3" fill="${c}" transform="rotate(${r} ${x} ${y})"/><path d="M${x-4},${y+2} l-5,5" stroke="#8a5a2b" stroke-width="1"/>`;
+}
+function napkin(x,y,hat=false){
+  return hat ? `<path d="M${x-17},${y} q17,-16 34,0 l-5,12 h-24 Z" fill="#fff" stroke="#b9d3dd" stroke-width="1.5"/>`
+    : `<path d="M${x-13},${y-8} q13,-8 26,0 q-8,9 -2,18 q-13,-5 -24,0 q7,-9 0,-18 Z" fill="#fff" stroke="#b9d3dd" stroke-width="1.3"/>`;
 }
 
 /* ---------- Szene-Assembler ---------- */
@@ -410,8 +439,12 @@ function scene(o={}){
   if(o.flowers) s += flower(40,184) + flower(70,190,'#f6c667') + flower(250,192) + flower(350,186,'#f6c667') + flower(380,194);
   if(o.fence) s += fence(30,148);
   if(o.tree) s += tree();
+  if(o.oak) s += oak();
   if(o.autumn) s += autumn({wind:o.wind});
-  if(o.picnic) s += picnic(o.picnic.x||200,o.picnic.y||188,o.picnic.mess);
+  if(o.picnic) s += picnic(o.picnic.x||200,o.picnic.y||188,o.picnic.mess,o.picnic.full);
+  if(o.blanketCarrier) s += blanketCarrier(o.blanketCarrier.x,o.blanketCarrier.y);
+  if(o.appleMotion) s += appleMotion(o.appleMotion.x,o.appleMotion.y);
+  if(o.tracks) s += tracks(o.tracks.x,o.tracks.y);
   if(o.bush) s += bush(o.bush.x||60, o.bush.y||176, o.bush.s||1);
   if(o.bush2) s += bush(o.bush2.x||330, o.bush2.y||178, o.bush2.s||1.2);
   if(o.house) s += house();
@@ -423,7 +456,9 @@ function scene(o={}){
   if(o.girl) s += girl(o.girlX||130, o.girlHug);
   if(o.ossi) s += ossi(o.ossi.x||280, o.ossi.y||172, o.ossi.s||1.35, o.ossi.flip);
   if(o.mika) s += mika(o.mika.x||90,o.mika.y||176,o.mika.s||1,o.mika.flip);
-  if(o.squirrel) s += squirrel(o.squirrel.x||310,o.squirrel.y||172,o.squirrel.s||1,o.squirrel.flip,o.squirrel.withNut);
+  if(o.squirrel) s += squirrel(o.squirrel.x||310,o.squirrel.y||172,o.squirrel.s||1,o.squirrel.flip,o.squirrel.withNut,o.squirrel.withApple);
+  if(o.napkin) s += napkin(o.napkin.x,o.napkin.y,o.napkin.hat);
+  if(o.leaf) s += leaf(o.leaf.x,o.leaf.y,o.leaf.c,o.leaf.r);
   if(o.sound) s += sound(o.sound.x, o.sound.y);
   if(o.jumpArc) s += jump(o.jumpArc.x, o.jumpArc.y);
   if(o.heart) s += heart(o.heart.x, o.heart.y, o.heart.s||1) + heart(o.heart.x+26, o.heart.y-18, .7);
@@ -443,52 +478,52 @@ window.STORY = {
     {
       title: "Der volle Picknickkorb",
       pages: [
-        {svg:scene({sky:'day',place:'garden',house:true,autumn:true,dog:{x:195,y:170,pose:'stand',mood:'joy'},mika:{x:90,y:176,s:1.15},ossi:{x:330,y:173,s:1.1,flip:true}}),
+        {svg:scene({sky:'day',place:'garden',house:true,autumn:true,dog:{x:195,y:170,pose:'stand',mood:'joy'},mika:{x:65,y:176,s:.9},ossi:{x:350,y:173,s:.9,flip:true}}),
           text:"Der Herbst beginnt. Die Luft ist frisch, und erste Blätter werden bunt. Umka, Mika und Ossi wollen ein Picknick machen."},
-        {svg:scene({sky:'day',place:'garden',fence:true,autumn:true,picnic:{x:205,y:188},dog:{x:110,y:166,pose:'sit',mood:'think'},mika:{x:310,y:175,s:1.1,flip:true}}),
+        {svg:scene({sky:'day',place:'garden',fence:true,autumn:true,picnic:{x:205,y:188,full:true},dog:{x:100,y:166,pose:'sit',mood:'think'},mika:{x:315,y:175,s:1.0,flip:true},ossi:{x:375,y:173,s:.75,flip:true}}),
           text:"Sie packen Brot, Käse und Äpfel ein. Mika bringt drei Beeren mit. Eine Beere trägt er schon im Bauch."},
-        {svg:scene({sky:'day',place:'forest',autumn:true,wind:true,dog:{x:160,y:169,pose:'stand',mood:'joy'},mika:{x:70,y:176,s:1.1},ossi:{x:340,y:173,s:1.05,flip:true}}),
+        {svg:scene({sky:'day',place:'forest',autumn:true,wind:true,dog:{x:145,y:169,pose:'stand',mood:'joy'},mika:{x:35,y:176,s:.85},blanketCarrier:{x:335,y:145}}),
           text:"Ossi trägt die Decke. Sie ist fast größer als er. Bei jedem Schritt ruft er: „Ich sehe nichts, aber ich komme mit!“"},
-        {svg:scene({sky:'day',place:'meadow',autumn:true,tree:true,dog:{x:115,y:168,pose:'stand',mood:'smile'},mika:{x:205,y:175,s:1.1},ossi:{x:350,y:173,s:1.05,flip:true}}),
+        {svg:scene({sky:'day',place:'meadow',autumn:true,oak:true,dog:{x:80,y:168,pose:'stand',mood:'smile'},mika:{x:170,y:175,s:.85},ossi:{x:220,y:173,s:.75,flip:true}}),
           text:"Unter einer großen Eiche finden sie den besten Platz. Die Sonne wärmt ihre Nasen. Über ihnen raschelt es leise."}
       ]
     },
     {
       title: "Ein frecher Dieb?",
       pages: [
-        {svg:scene({sky:'day',place:'meadow',tree:true,autumn:true,picnic:{x:205,y:188},dog:{x:95,y:166,pose:'sit',mood:'smile'},mika:{x:305,y:174,s:1.05}}),
+        {svg:scene({sky:'day',place:'meadow',tree:true,autumn:true,picnic:{x:190,y:188},appleMotion:{x:310,y:145},dog:{x:80,y:166,pose:'sit',mood:'surprise'},mika:{x:365,y:174,s:.85,flip:true}}),
           text:"Die Freunde breiten ihr Essen aus. Plötzlich rollt ein Apfel von der Decke. Dann hüpft er einfach davon!"},
-        {svg:scene({sky:'day',place:'meadow',tree:true,autumn:true,picnic:{x:205,y:188,mess:true},dog:{x:105,y:166,pose:'sit',mood:'surprise'},ossi:{x:330,y:173,s:1.05,flip:true}}),
+        {svg:scene({sky:'day',place:'meadow',tree:true,autumn:true,picnic:{x:190,y:188,mess:true},tracks:{x:245,y:166},dog:{x:75,y:178,pose:'stand',mood:'think'},mika:{x:205,y:174,s:.9},ossi:{x:365,y:173,s:.85,flip:true}}),
           text:"„Ein Apfeldieb!“, ruft Ossi. Umka schnuppert am Boden. Mika flüstert: „Vielleicht hat der Apfel Beine bekommen.“"},
-        {svg:scene({sky:'day',place:'forest',tree:true,autumn:true,wind:true,dog:{x:150,y:169,pose:'stand',mood:'think'},mika:{x:65,y:175,s:1.1},ossi:{x:330,y:173,s:1.05,flip:true},squirrel:{x:272,y:122,s:.9,withNut:true}}),
+        {svg:scene({sky:'day',place:'forest',tree:true,autumn:true,wind:true,tracks:{x:190,y:177},dog:{x:95,y:169,pose:'stand',mood:'think'},mika:{x:200,y:175,s:.9},ossi:{x:255,y:173,s:.85,flip:true},squirrel:{x:332,y:165,s:.9,flip:true,withApple:true}}),
           text:"Sie folgen kleinen Spuren zum Baum. Dort sitzt ein Eichhörnchen. Es hält den Apfel fest und schaut sehr erschrocken."},
-        {svg:scene({sky:'day',place:'forest',tree:true,autumn:true,dog:{x:120,y:168,pose:'sit',mood:'smile'},mika:{x:220,y:175,s:1.05},ossi:{x:280,y:173,s:1.05},squirrel:{x:350,y:171,s:1.05,flip:true}}),
+        {svg:scene({sky:'day',place:'forest',tree:true,autumn:true,dog:{x:75,y:168,pose:'sit',mood:'smile'},mika:{x:190,y:175,s:.9},ossi:{x:260,y:173,s:.85},squirrel:{x:350,y:171,s:.9,flip:true,withApple:true}}),
           text:"„Ich heiße Flitzi“, sagt es. „Der Wind hat den Apfel zu mir gerollt. Ich wollte ihn zurückbringen, aber er war schneller als ich!“"}
       ]
     },
     {
       title: "Der wilde Blättersturm",
       pages: [
-        {svg:scene({sky:'day',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'joy'},mika:{x:255,y:175,s:1.0},ossi:{x:330,y:173,s:1.0,flip:true},squirrel:{x:375,y:171,s:.85,flip:true}}),
+        {svg:scene({sky:'day',place:'meadow',autumn:true,picnic:{x:190,y:188,full:true},dog:{x:65,y:166,pose:'sit',mood:'joy'},mika:{x:220,y:175,s:.85},ossi:{x:285,y:173,s:.8,flip:true},squirrel:{x:360,y:171,s:.85,flip:true,withNut:true}}),
           text:"Alle lachen. Flitzi darf mitessen. Es knabbert so schnell, dass seine Backen rund wie zwei kleine Bälle werden."},
-        {svg:scene({sky:'dusk',place:'meadow',autumn:true,wind:true,picnic:{x:210,y:188,mess:true},dog:{x:95,y:167,pose:'stand',mood:'surprise'},squirrel:{x:345,y:171,s:1,flip:true}}),
+        {svg:scene({sky:'dusk',place:'meadow',autumn:true,wind:true,picnic:{x:205,y:188,mess:true},dog:{x:75,y:167,pose:'stand',mood:'surprise'},squirrel:{x:350,y:171,s:.9,flip:true},napkin:{x:119,y:87,hat:true}}),
           text:"Da pustet ein starker Windstoß über die Wiese. Die Servietten fliegen los. Eine landet auf Umkas Kopf wie ein Hut."},
-        {svg:scene({sky:'dusk',place:'meadow',autumn:true,wind:true,dog:{x:125,y:168,pose:'stand',mood:'joy'},mika:{x:235,y:174,s:1.1},ossi:{x:315,y:173,s:1.05,flip:true},squirrel:{x:375,y:170,s:.85,flip:true}}),
-          text:"Alle jagen den Sachen hinterher. Ossi hüpft auf die Decke. Mika hält den Korb fest, doch seine Füße baumeln in der Luft."},
-        {svg:scene({sky:'dusk',place:'forest',tree:true,autumn:true,wind:true,dog:{x:105,y:168,pose:'stand',mood:'smile'},mika:{x:220,y:175,s:1.05},ossi:{x:280,y:173,s:1.0},squirrel:{x:350,y:169,s:1.05,flip:true,withNut:true}}),
-          text:"Flitzi flitzt von Ast zu Ast. Es fängt die letzte Serviette mit dem Schwanz. „Mein Schwanz kann mehr als nur hübsch sein!“, ruft es."}
+        {svg:scene({sky:'dusk',place:'meadow',autumn:true,wind:true,picnic:{x:210,y:188,mess:true},dog:{x:60,y:168,pose:'stand',mood:'joy'},mika:{x:205,y:153,s:.8},ossi:{x:275,y:153,s:.78,flip:true},squirrel:{x:370,y:170,s:.7,flip:true},jumpArc:{x:275,y:125}}),
+          text:"Alle jagen den Sachen hinterher. Ossi springt auf den Rand der Decke. Mika bewacht den Korb, damit er nicht wegfliegt."},
+        {svg:scene({sky:'dusk',place:'forest',tree:true,autumn:true,wind:true,dog:{x:55,y:168,pose:'stand',mood:'smile'},mika:{x:160,y:175,s:.8},ossi:{x:220,y:173,s:.75},squirrel:{x:330,y:118,s:.85,flip:true},napkin:{x:355,y:116}}),
+          text:"Flitzi springt hoch am Baum. Mit seinem buschigen Schwanz fängt es die letzte Serviette. „Mein Schwanz kann mehr als nur hübsch sein!“, ruft es."}
       ]
     },
     {
       title: "Vier Freunde im Herbst",
       pages: [
-        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'smile'},mika:{x:235,y:175,s:1.0},ossi:{x:320,y:173,s:1,flip:true},squirrel:{x:375,y:170,s:.85,flip:true}}),
+        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:195,y:188,full:true},dog:{x:60,y:166,pose:'sit',mood:'smile'},mika:{x:225,y:175,s:.85},ossi:{x:290,y:173,s:.8,flip:true},squirrel:{x:365,y:170,s:.8,flip:true},napkin:{x:104,y:87,hat:true}}),
           text:"Bald liegt alles wieder auf der Decke. Nur Umkas Servietten-Hut bleibt. Er gefällt ihm nämlich sehr gut."},
-        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:205,y:188},dog:{x:90,y:166,pose:'sit',mood:'joy'},mika:{x:235,y:175,s:1.0},ossi:{x:320,y:173,s:1,flip:true},squirrel:{x:375,y:170,s:.85,flip:true,withNut:true}}),
+        {svg:scene({sky:'dusk',place:'meadow',autumn:true,picnic:{x:195,y:188,full:true},dog:{x:60,y:166,pose:'sit',mood:'surprise'},mika:{x:220,y:175,s:.85},ossi:{x:290,y:173,s:.8,flip:true},squirrel:{x:365,y:170,s:.8,flip:true,withNut:true},sound:{x:300,y:110}}),
           text:"Zum Nachtisch teilt Flitzi seine Nüsse. Ossi probiert eine und knackt sie viel zu laut. Alle erschrecken und lachen dann noch lauter."},
-        {svg:scene({sky:'dusk',place:'forest',tree:true,autumn:true,dog:{x:110,y:168,pose:'stand',mood:'smile'},mika:{x:220,y:175,s:1.05},ossi:{x:285,y:173,s:1},squirrel:{x:350,y:170,s:1.05,flip:true},heart:{x:300,y:95}}),
+        {svg:scene({sky:'dusk',place:'forest',tree:true,autumn:true,dog:{x:65,y:168,pose:'stand',mood:'smile'},mika:{x:175,y:175,s:.85},ossi:{x:250,y:173,s:.8},squirrel:{x:350,y:170,s:.9,flip:true},heart:{x:300,y:95},leaf:{x:324,y:136,c:'#e69a32',r:18}}),
           text:"„Kommst du beim nächsten Picknick wieder?“, fragt Mika. Flitzi nickt so heftig, dass ein Blatt auf seiner Nase landet."},
-        {svg:scene({sky:'night',place:'meadow',autumn:true,tree:true,dog:{x:90,y:168,pose:'sit',mood:'joy'},mika:{x:215,y:175,s:1.1},ossi:{x:285,y:173,s:1.05},squirrel:{x:355,y:170,s:1.05,flip:true,withNut:true}}),
+        {svg:scene({sky:'night',place:'meadow',autumn:true,wind:true,tree:true,dog:{x:70,y:168,pose:'stand',mood:'joy'},mika:{x:180,y:175,s:.85},ossi:{x:250,y:173,s:.8},squirrel:{x:345,y:170,s:.85,flip:true}}),
           text:"Vier Freunde gehen fröhlich nach Hause. Hinter ihnen tanzen die Blätter. Es war das lustigste Picknick im ganzen Herbst."}
       ]
     }

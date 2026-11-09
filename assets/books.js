@@ -50,7 +50,19 @@ window.BOOKS = [
     pages: 16,
     palette: ["#d98a32", "#70411f"],
     accent: "#f3bd3f",
-    art: "squirrel",
+    art: "squirrel"
+  },
+  {
+    slug: "umka-mika",
+    title: "Umka und Mika: Der Tag, an dem alles begann",
+    subtitle: "Eine Freundschaftsgeschichte zum Lesenüben",
+    emoji: "🐾",
+    author: "von Papa",
+    chapters: 4,
+    pages: 16,
+    palette: ["#a8d5a2", "#2f6b45"],
+    accent: "#f6c667",
+    art: "friends",
     isNew: true
   }
 ];
